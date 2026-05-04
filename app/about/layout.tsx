@@ -12,17 +12,19 @@ export default function AboutLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<div>
-			<h1>About us</h1>
-			<ul>
-				<li>
-					<Link href="/about/team">Our Team</Link>
-				</li>
-				<li>
-					<Link href="/about/contacts">Contacts</Link>
-				</li>
-			</ul>
-			<div>{children}</div>
+		<div style={{padding: '60px 0'}}>
+			<div className="container">
+				<h1>About us</h1>
+				<ul>
+					<li>
+						<Link href="/about/team">Our Team</Link>
+					</li>
+					<li>
+						<Link href="/about/contacts">Contacts</Link>
+					</li>
+				</ul>
+				<div>{children}</div>
+			</div>
 		</div>
 	)
 }

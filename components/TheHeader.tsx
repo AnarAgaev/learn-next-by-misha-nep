@@ -14,6 +14,9 @@ export default function TheHeader() {
 					<Link className="header__item" href="/about">
 						About
 					</Link>
+					<Link className="header__item" href="/pricing">
+						Pricing
+					</Link>
 				</nav>
 			</div>
 		</header>

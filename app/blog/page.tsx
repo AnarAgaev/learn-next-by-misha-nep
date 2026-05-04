@@ -32,15 +32,17 @@ export default async function Blog() {
 	const posts = await getData()
 
 	return (
-		<>
-			<h1>Blog pages</h1>
-			<ul>
-				{posts.map((post) => (
-					<li key={post.id}>
-						<Link href={`/blog/${post.id}`}>{post.title}</Link>
-					</li>
-				))}
-			</ul>
-		</>
+		<div style={{padding: '60px 0'}}>
+			<div className="container">
+				<h1>Blog pages</h1>
+				<ul>
+					{posts.map((post) => (
+						<li key={post.id}>
+							<Link href={`/blog/${post.id}`}>{post.title}</Link>
+						</li>
+					))}
+				</ul>
+			</div>
+		</div>
 	)
 }

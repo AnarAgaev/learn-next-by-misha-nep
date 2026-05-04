@@ -46,9 +46,13 @@ export default async function Post({
 	console.log('post', post)
 
 	return (
-		<div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
-			<h1>{post.title}</h1>
-			<p>{post.body}</p>
+		<div style={{padding: '60px 0'}}>
+			<div className="container">
+				<div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
+					<h1>{post.title}</h1>
+					<p>{post.body}</p>
+				</div>
+			</div>
 		</div>
 	)
 }
