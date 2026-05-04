@@ -1,8 +1,10 @@
 import type {Metadata} from 'next'
 import {Montserrat} from 'next/font/google'
 import './globals.scss'
+import {Container} from '@chakra-ui/react'
 import TheFooter from '@/components/TheFooter'
 import TheHeader from '@/components/TheHeader'
+import {Provider} from '@/components/ui/provider'
 
 const montserrat = Montserrat({
 	variable: '--font-main',
@@ -20,11 +22,17 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en" className={montserrat.className}>
-			<body>
-				<TheHeader />
-				<main>{children}</main>
-				<TheFooter />
+		<html lang="en" className={montserrat.className} suppressHydrationWarning>
+			<body suppressHydrationWarning>
+				<Provider>
+					<TheHeader />
+					<main>
+						<Container my="6" flex="1" display="flex" flexDirection="column">
+							{children}
+						</Container>
+					</main>
+					<TheFooter />
+				</Provider>
 			</body>
 		</html>
 	)

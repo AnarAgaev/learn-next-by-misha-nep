@@ -1,3 +1,5 @@
+import {Heading} from '@chakra-ui/react'
+
 export default function LoadingPosts() {
-	return <h1>Loading ...</h1>
+	return <Heading>Loading ...</Heading>
 }

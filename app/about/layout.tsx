@@ -1,5 +1,12 @@
+import {
+	Link as ChakraLink,
+	Grid,
+	GridItem,
+	Heading,
+	VStack,
+} from '@chakra-ui/react'
 import type {Metadata} from 'next'
-import Link from 'next/link'
+import NextLink from 'next/link'
 
 export const metadata: Metadata = {
 	title: 'About page',
@@ -12,19 +19,19 @@ export default function AboutLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<div style={{padding: '60px 0'}}>
-			<div className="container">
-				<h1>About us</h1>
-				<ul>
-					<li>
-						<Link href="/about/team">Our Team</Link>
-					</li>
-					<li>
-						<Link href="/about/contacts">Contacts</Link>
-					</li>
-				</ul>
-				<div>{children}</div>
-			</div>
-		</div>
+		<Grid flex="1" h="full" gridTemplateRows="auto 1fr" gap="5">
+			<Heading>About us</Heading>
+			<Grid gridTemplateColumns="300px 1fr" h="full" gap="5">
+				<VStack align="start" bgColor="gray.subtle" p="5" borderRadius="20px">
+					<ChakraLink asChild>
+						<NextLink href="/about/contacts">Contacts</NextLink>
+					</ChakraLink>
+					<ChakraLink asChild>
+						<NextLink href="/about/team">Our Team</NextLink>
+					</ChakraLink>
+				</VStack>
+				<GridItem py="5">{children}</GridItem>
+			</Grid>
+		</Grid>
 	)
 }

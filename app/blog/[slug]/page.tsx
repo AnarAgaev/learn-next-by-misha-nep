@@ -1,3 +1,4 @@
+import {Heading, Text, VStack} from '@chakra-ui/react'
 import type {Metadata} from 'next'
 
 interface PostProps {
@@ -36,23 +37,17 @@ async function getData(postId: string): Promise<PostDetail> {
 	return post
 }
 
-export default async function Post({
+export default async function PostPage({
 	params,
 }: PostProps): Promise<React.ReactNode> {
 	const {slug} = await params
 
 	const post = await getData(slug)
 
-	console.log('post', post)
-
 	return (
-		<div style={{padding: '60px 0'}}>
-			<div className="container">
-				<div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
-					<h1>{post.title}</h1>
-					<p>{post.body}</p>
-				</div>
-			</div>
-		</div>
+		<VStack align="start">
+			<Heading>{post.title}</Heading>
+			<Text>{post.body}</Text>
+		</VStack>
 	)
 }

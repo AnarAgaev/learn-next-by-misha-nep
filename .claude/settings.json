@@ -1,9 +1,5 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(bun run dev)",
-      "Bash(bun run build)",
-      "Bash(bun run lint)"
-    ]
-  }
+	"permissions": {
+		"allow": ["Bash(bun run dev)", "Bash(bun run build)", "Bash(bun run lint)"]
+	}
 }

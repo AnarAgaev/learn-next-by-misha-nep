@@ -1,5 +1,5 @@
-export const About = () => {
-	return <p style={{marginTop: '20px'}}>Please, select subitem</p>
-}
+import {Text} from '@chakra-ui/react'
 
-export default About
+export default function AboutPage() {
+	return <Text>Please, select subitem on the Sidebar</Text>
+}

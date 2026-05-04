@@ -1,11 +1,5 @@
-export const Home = () => {
-	return (
-		<div style={{padding: '60px 0'}}>
-			<div className="container">
-				<h1>Home page</h1>
-			</div>
-		</div>
-	)
-}
+import {Heading} from '@chakra-ui/react'
 
-export default Home
+export default function HomePage() {
+	return <Heading>Home page</Heading>
+}

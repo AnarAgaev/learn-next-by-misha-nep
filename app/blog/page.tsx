@@ -1,5 +1,6 @@
+import {Box, Link as ChakraLink, Heading, VStack} from '@chakra-ui/react'
 import type {Metadata} from 'next'
-import Link from 'next/link'
+import NextLink from 'next/link'
 
 interface Post {
 	userId: number
@@ -9,11 +10,14 @@ interface Post {
 }
 
 async function getData(): Promise<Post[]> {
-	const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-		next: {
-			revalidate: 60,
+	const response = await fetch(
+		'https://jsonplaceholder.typicode.com/posts?_limit=20',
+		{
+			next: {
+				revalidate: 60,
+			},
 		},
-	})
+	)
 
 	if (!response.ok) {
 		throw new Error('Enable to fetch post list!')
@@ -28,21 +32,21 @@ export const metadata: Metadata = {
 	title: 'Blog | Next app',
 }
 
-export default async function Blog() {
+export default async function BlogPage() {
 	const posts = await getData()
 
 	return (
-		<div style={{padding: '60px 0'}}>
-			<div className="container">
-				<h1>Blog pages</h1>
-				<ul>
-					{posts.map((post) => (
-						<li key={post.id}>
-							<Link href={`/blog/${post.id}`}>{post.title}</Link>
-						</li>
-					))}
-				</ul>
-			</div>
-		</div>
+		<VStack w="full" align="start">
+			<Heading>Blog</Heading>
+			<VStack w="full" align="start" as="ul">
+				{posts.map((post) => (
+					<Box as="li" key={post.id}>
+						<ChakraLink asChild>
+							<NextLink href={`/blog/${post.id}`}>{post.title}</NextLink>
+						</ChakraLink>
+					</Box>
+				))}
+			</VStack>
+		</VStack>
 	)
 }
