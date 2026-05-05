@@ -1,28 +1,47 @@
+'use client'
+
 import {Box, Link as ChakraLink, Container, HStack} from '@chakra-ui/react'
 import NextLink from 'next/link'
+import {usePathname} from 'next/navigation'
 import {ColorModeButton} from '@/components/ui/color-mode'
 
-export default function TheHeader() {
+export type NavLinks = {
+	id: number
+	url: string
+	label: string
+}[]
+
+type Props = {
+	navLinks: NavLinks
+}
+
+export default function TheHeader(props: Props) {
+	const pathName = usePathname()
+
 	return (
 		<Container fluid maxW="7xl" mt="5">
 			<Box as="nav">
 				<HStack justify="space-between">
 					<HStack as="ul" gap="6">
-						<Box as="li">
-							<ChakraLink asChild {...linkStyles}>
-								<NextLink href="/">Home</NextLink>
-							</ChakraLink>
-						</Box>
-						<Box as="li">
-							<ChakraLink asChild {...linkStyles}>
-								<NextLink href="/about">About</NextLink>
-							</ChakraLink>
-						</Box>
-						<Box as="li">
-							<ChakraLink asChild {...linkStyles}>
-								<NextLink href="/blog">Blog</NextLink>
-							</ChakraLink>
-						</Box>
+						{props.navLinks.map((link) => {
+							const isActiveLink =
+								link.url === '/'
+									? pathName === '/'
+									: pathName.startsWith(link.url)
+
+							return (
+								<Box key={link.id} as="li">
+									<ChakraLink
+										asChild
+										{...linkStyles}
+										color={isActiveLink ? 'orange' : 'inherit'}
+										pointerEvents={isActiveLink ? 'none' : 'initial'}
+									>
+										<NextLink href={link.url}>{link.label}</NextLink>
+									</ChakraLink>
+								</Box>
+							)
+						})}
 					</HStack>
 					<ColorModeButton />
 				</HStack>

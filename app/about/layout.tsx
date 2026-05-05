@@ -21,7 +21,7 @@ export default function AboutLayout({
 	return (
 		<Grid flex="1" h="full" gridTemplateRows="auto 1fr" gap="5">
 			<Heading>About us</Heading>
-			<Grid gridTemplateColumns="300px 1fr" h="full" gap="5">
+			<Grid gridTemplateColumns="240px 1fr" h="full" gap="5">
 				<VStack align="start" bgColor="gray.subtle" p="5" borderRadius="20px">
 					<ChakraLink asChild>
 						<NextLink href="/about/contacts">Contacts</NextLink>
