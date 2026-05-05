@@ -2,9 +2,8 @@ import type {Metadata} from 'next'
 import {Montserrat} from 'next/font/google'
 import './globals.scss'
 import {Container} from '@chakra-ui/react'
-import TheFooter from '@/components/TheFooter'
+import {TheFooter, TheHeader} from '@/components'
 import type {NavLinks} from '@/components/TheHeader'
-import TheHeader from '@/components/TheHeader'
 import {Provider} from '@/components/ui/provider'
 
 const montserrat = Montserrat({

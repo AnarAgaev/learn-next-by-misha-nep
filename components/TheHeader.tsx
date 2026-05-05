@@ -15,7 +15,7 @@ type Props = {
 	navLinks: NavLinks
 }
 
-export default function TheHeader(props: Props) {
+export function TheHeader(props: Props) {
 	const pathName = usePathname()
 
 	return (
