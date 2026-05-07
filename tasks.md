@@ -2,7 +2,7 @@
 
 ## Роутинг (App Router)
 
-- [x] Корневой layout (`app/layout.tsx`) — обёртка всех страниц с `<TheHeader>` и `<TheFooter>`
+- [x] Корневой layout (`app/layout.tsx`) — обёртка всех страниц с `<Header>` и `<Footer>`
 - [x] Главная страница (`app/page.tsx`)
 - [x] Страница Blog (`app/blog/page.tsx`)
 - [x] Динамический маршрут поста (`app/blog/[slug]/page.tsx`)
@@ -14,8 +14,8 @@
 
 ## Компоненты
 
-- [x] `TheHeader` — навигация с `next/link` (Home, Blog, About, Pricing)
-- [x] `TheFooter` — заглушка футера
+- [x] `Header` — навигация с `next/link` (Home, Blog, About, Pricing)
+- [x] `Footer` — заглушка футера
 
 ## Данные и серверные компоненты
 

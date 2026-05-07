@@ -1,8 +1,8 @@
 import type {Post} from '@/types'
 
-export async function getAllPosts(): Promise<Post[]> {
+export async function getPostsBySearch(query: string): Promise<Post[]> {
 	const response = await fetch(
-		'https://jsonplaceholder.typicode.com/posts?_limit=20',
+		`https://jsonplaceholder.typicode.com/posts?q=${encodeURIComponent(query)}`,
 		{
 			next: {
 				revalidate: 60,

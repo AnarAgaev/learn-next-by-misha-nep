@@ -2,8 +2,8 @@ import type {Metadata} from 'next'
 import {Montserrat} from 'next/font/google'
 import './globals.scss'
 import {Container} from '@chakra-ui/react'
-import {TheFooter, TheHeader} from '@/components'
-import type {NavLinks} from '@/components/TheHeader'
+import {Footer, Header} from '@/components'
+import type {NavLinks} from '@/components/Header'
 import {Provider} from '@/components/ui/provider'
 
 const montserrat = Montserrat({
@@ -25,13 +25,13 @@ export default function RootLayout({
 		<html lang="en" className={montserrat.className} suppressHydrationWarning>
 			<body>
 				<Provider>
-					<TheHeader navLinks={navLinks} />
+					<Header navLinks={navLinks} />
 					<main>
 						<Container my="6" flex="1" display="flex" flexDirection="column">
 							{children}
 						</Container>
 					</main>
-					<TheFooter />
+					<Footer />
 				</Provider>
 			</body>
 		</html>

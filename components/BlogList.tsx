@@ -1,10 +1,10 @@
 'use client'
 
-import {Box, Link as ChakraLink, Heading, Text, VStack} from '@chakra-ui/react'
-import NextLink from 'next/link'
+import {Text} from '@chakra-ui/react'
 import {useEffect, useState} from 'react'
-import type {Post} from '@/helpers'
+import {PostSearch, Posts} from '@/components'
 import {getAllPosts} from '@/helpers'
+import type {Post} from '@/types'
 
 export function BlogList() {
 	const [posts, setPosts] = useState<Post[]>([])
@@ -17,21 +17,9 @@ export function BlogList() {
 	}, [])
 
 	return (
-		<VStack w="full" align="start">
-			<Heading>Blog</Heading>
-			{loading ? (
-				<Text>Loading...</Text>
-			) : (
-				<VStack w="full" align="start" as="ul">
-					{posts.map((post) => (
-						<Box as="li" key={post.id}>
-							<ChakraLink asChild>
-								<NextLink href={`/blog/${post.id}`}>{post.title}</NextLink>
-							</ChakraLink>
-						</Box>
-					))}
-				</VStack>
-			)}
-		</VStack>
+		<>
+			<PostSearch onSearch={setPosts} />
+			{loading ? <Text>Loading...</Text> : <Posts posts={posts} />}
+		</>
 	)
 }

@@ -15,7 +15,7 @@ type Props = {
 	navLinks: NavLinks
 }
 
-export function TheHeader(props: Props) {
+export function Header(props: Props) {
 	const pathName = usePathname()
 
 	return (
@@ -35,7 +35,7 @@ export function TheHeader(props: Props) {
 										asChild
 										{...linkStyles}
 										color={isActiveLink ? 'orange' : 'inherit'}
-										pointerEvents={isActiveLink ? 'none' : 'initial'}
+										// pointerEvents={isActiveLink ? 'none' : 'initial'}
 									>
 										<NextLink href={link.url}>{link.label}</NextLink>
 									</ChakraLink>

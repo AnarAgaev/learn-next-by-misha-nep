@@ -21,15 +21,16 @@ Next.js 16 (App Router) with React 19 and TypeScript. The React Compiler is enab
 
 **Routing** — all routes live under `app/`. Nested layouts compose via `layout.tsx` files (e.g. `app/about/layout.tsx` wraps `/about/*` routes). Dynamic segments use `[slug]` folders. Special files: `loading.tsx`, `error.tsx`.
 
-**Shared components** — reusable UI in `components/`. Layout shell (`TheHeader`, `TheFooter`) is mounted in `app/layout.tsx` and wraps every page.
+**Shared components** — reusable UI in `components/`. Layout shell (`Header`, `Footer`) is mounted in `app/layout.tsx` and wraps every page.
 
 **Styling** — SCSS via `sass`. Global styles in `app/globals.scss`; scoped styles use CSS Modules (`.module.scss`). Biome formats with tabs, single quotes, no semicolons, no bracket spacing.
 
-**Path alias** — `@/` resolves to the project root (e.g. `@/components/TheHeader`).
+**Path alias** — `@/` resolves to the project root (e.g. `@/components/Header`).
 
 ## Linting / Formatting conventions
 
 Biome (not ESLint/Prettier). Key rules from `biome.json`:
+
 - Indent: tabs
 - Quotes: single
 - Semicolons: only when required (`asNeeded`)

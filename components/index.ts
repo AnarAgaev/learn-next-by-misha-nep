@@ -1,3 +1,5 @@
 export * from './BlogList'
-export * from './TheFooter'
-export * from './TheHeader'
+export * from './Footer'
+export * from './Header'
+export * from './PostSearch'
+export * from './Posts'
