@@ -1,4 +1,3 @@
-export * from './BlogList'
 export * from './Footer'
 export * from './Header'
 export * from './PostSearch'

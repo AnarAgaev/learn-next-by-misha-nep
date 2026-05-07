@@ -2,16 +2,12 @@
 
 import {Button, Field, Input, Stack} from '@chakra-ui/react'
 import {type FormEventHandler, useState} from 'react'
-import {getPostsBySearch} from '@/helpers'
-import type {Post} from '@/types'
+import usePosts from '@/store'
 
-type Props = {
-	onSearch: (posts: Post[]) => void
-}
-
-export const PostSearch = ({onSearch}: Props) => {
+export const PostSearch = () => {
 	const [search, setSearch] = useState<string>('')
 	const [isError, setError] = useState<boolean>(false)
+	const getPostsBySearch = usePosts((state) => state.getPostsBySearch)
 
 	const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
 		e.preventDefault()
@@ -21,9 +17,7 @@ export const PostSearch = ({onSearch}: Props) => {
 			return
 		}
 
-		const posts = await getPostsBySearch(search)
-
-		onSearch(posts)
+		getPostsBySearch({query: search})
 	}
 
 	return (

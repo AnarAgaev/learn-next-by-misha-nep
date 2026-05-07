@@ -1,6 +1,6 @@
 import {Heading, VStack} from '@chakra-ui/react'
 import type {Metadata} from 'next'
-import {BlogList} from '@/components'
+import {PostSearch, Posts} from '@/components'
 
 export const metadata: Metadata = {
 	title: 'Blog posts',
@@ -8,9 +8,10 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
 	return (
-		<VStack w="full" align="start" gap="5">
+		<VStack w="full" align="start" gap="6">
 			<Heading>Blog</Heading>
-			<BlogList />
+			<PostSearch />
+			<Posts />
 		</VStack>
 	)
 }
