@@ -1,13 +1,19 @@
 'use client'
 
-import {Button, Field, Input, Stack} from '@chakra-ui/react'
+import {Button, Field, HStack, Input, Stack, Text} from '@chakra-ui/react'
 import {type FormEventHandler, useState} from 'react'
-import usePosts from '@/store'
+import useSWRMutation from 'swr/mutation'
+import {getPostsBySearch} from '@/helpers'
 
 export const PostSearch = () => {
 	const [search, setSearch] = useState<string>('')
 	const [isError, setError] = useState<boolean>(false)
-	const getPostsBySearch = usePosts((state) => state.getPostsBySearch)
+
+	const {trigger, isMutating} = useSWRMutation(
+		'posts',
+		(_key, {arg}: {arg: string}) => getPostsBySearch(arg),
+		{populateCache: true, revalidate: false},
+	)
 
 	const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
 		e.preventDefault()
@@ -17,7 +23,7 @@ export const PostSearch = () => {
 			return
 		}
 
-		getPostsBySearch({query: search})
+		await trigger(search)
 	}
 
 	return (
@@ -43,7 +49,12 @@ export const PostSearch = () => {
 					/>
 					<Field.ErrorText>Set search query</Field.ErrorText>
 				</Field.Root>
-				<Button type="submit">Submit</Button>
+				<HStack>
+					<Button type="submit" loading={isMutating}>
+						Submit
+					</Button>
+					{isMutating && <Text>Loading...</Text>}
+				</HStack>
 			</Stack>
 		</form>
 	)
