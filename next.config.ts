@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
 	experimental: {
 		optimizePackageImports: ['@chakra-ui/react'],
 	},
+	// env: {
+	// 	BASE_URL: process.env.BASE_URL,
+	// },
 }
 
 export default nextConfig
