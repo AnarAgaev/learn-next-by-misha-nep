@@ -1,0 +1,28 @@
+{
+	"posts": [
+		{
+			"userId": 1,
+			"id": 1,
+			"title": "sit aute ea nisi",
+			"body": "Tempor culpa amet sit tempor laboris\nDoloribus sit exercitation sunt nisi deserunt aute\nAd culpa eu aute enim laboris"
+		},
+		{
+			"userId": 1,
+			"id": 2,
+			"title": "ut tempor sint incididunt nulla fugiat",
+			"body": "Mollit et sint eiusmod in pariatur\nNostrud sed consectetur aliquip in eiusmod aliquip incididunt sint aute\nPariatur ad excepteur nulla ullamco duis do minim ea\nAnim sint duis nisi esse elit aliquip"
+		},
+		{
+			"userId": 1,
+			"id": 3,
+			"title": "velit non duis sed",
+			"body": "Velit laboris perferendis cupidatat mollit aliqua consequat magna ea consequat\nCulpa non pariatur nisi magna asperiores perferendis tempor adipiscing labore\nAd culpa sed occaecat sint anim commodo"
+		},
+		{
+			"userId": 1,
+			"id": 4,
+			"title": "labore duis eu labore",
+			"body": "Ad mollit lorem consequat doloribus veniam doloribus ut reprehenderit\nExercitation enim excepteur ad lorem esse laborum dolor labore pariatur\nEx elit ex eiusmod eiusmod laborum sed dolore\nId minim consequat culpa laboris exercitation voluptate"
+		}
+	]
+}

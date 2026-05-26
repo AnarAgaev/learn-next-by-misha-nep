@@ -6,6 +6,8 @@ export const metadata: Metadata = {
 	title: 'Blog posts',
 }
 
+export const revalidate = 10
+
 export default function BlogPage() {
 	return (
 		<VStack w="full" align="start" gap="6">

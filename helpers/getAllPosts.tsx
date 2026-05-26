@@ -2,12 +2,12 @@ import type {Post} from '@/types'
 
 export async function getAllPosts(): Promise<Post[]> {
 	const response = await fetch(
-		// `${process.env.NEXT_PUBLIC_BASE_URL}?_limit=10`,
-		`/api/blog?limit=10`,
+		`${process.env.NEXT_PUBLIC_SITE_URL}/api/blog?page=1&perPage=10`,
 		{
-			next: {
-				revalidate: 60,
-			},
+			// cache: 'force-cache',
+			// next: {
+			// 	revalidate: 10,
+			// },
 		},
 	)
 

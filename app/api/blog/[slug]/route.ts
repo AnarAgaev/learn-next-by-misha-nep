@@ -1,31 +1,50 @@
-import {cookies, headers} from 'next/headers'
-import {redirect} from 'next/navigation'
 import {NextResponse} from 'next/server'
 
-export async function DELETE(
-	request: Request,
+const API_URL = process.env.NEXT_PUBLIC_API_URL
+
+export async function GET(
+	_request: Request,
 	{params}: {params: Promise<{slug: string}>},
 ) {
 	const {slug} = await params
 
-	// Getting Headers or Cookies fo the request
-	const headerList = await headers()
-	const userKey = headerList.get('user_api_secret_key')
-	const type = headerList.get('Content-Type')
+	console.log('${API_URL}/posts/${slug}', `${API_URL}/posts/${slug}`)
 
-	const cookieList = await cookies()
-	const cookie1 = cookieList.get('Cookie_1')
+	const response = await fetch(
+		`${API_URL}/posts/${slug}`,
+		// 	{
+		// 	next: {revalidate: 60},
+		// }
+	)
 
-	// Request to DB for delete slug post
+	if (!response.ok) {
+		return NextResponse.json(
+			{message: `Post ${slug} not found`},
+			{status: response.status},
+		)
+	}
 
-	// After valid delete request we can redirect user to the some page, etc. home
-	// redirect('/blog')
+	const post = await response.json()
 
-	return NextResponse.json({
-		status: 'done',
-		slug: slug,
-		headers: {userKey, type},
-		cookies: {cookie1},
-		secretUserKey: process.env.SECRET_KEY || 'not available',
+	return NextResponse.json(post)
+}
+
+export async function DELETE(
+	_request: Request,
+	{params}: {params: Promise<{slug: string}>},
+) {
+	const {slug} = await params
+
+	const response = await fetch(`${API_URL}/posts/${slug}`, {
+		method: 'DELETE',
 	})
+
+	if (!response.ok) {
+		return NextResponse.json(
+			{message: `Unable to delete post ${slug}`},
+			{status: response.status},
+		)
+	}
+
+	return NextResponse.json({status: 'done', slug})
 }

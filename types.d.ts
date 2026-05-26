@@ -8,6 +8,7 @@ export type Post = {
 export type PostsStore = {
 	posts: Post[]
 	loading: boolean
+	initialized: boolean
 	isError: boolean
 
 	setPosts: (payload: {posts: Post[]}) => void

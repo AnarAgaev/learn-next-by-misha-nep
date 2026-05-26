@@ -1,5 +1,6 @@
 import {Heading, Text, VStack} from '@chakra-ui/react'
 import type {Metadata} from 'next'
+import type {Post} from '@/types'
 
 interface PostProps {
 	params: Promise<{slug: string}>
@@ -22,14 +23,24 @@ export async function generateMetadata({params}: PostProps): Promise<Metadata> {
 	}
 }
 
+export async function generateStaticParams() {
+	const posts = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`).then(
+		(res) => res.json(),
+	)
+
+	return (posts as Post[]).map((post) => ({
+		slug: post.id.toString(), // ! ВСЕГДА СТРОКА И ТОЛЬКО СТРОКА
+	}))
+}
+
 async function getData(postId: string): Promise<PostDetail> {
 	const response = await fetch(
-		`https://jsonplaceholder.typicode.com/posts/${postId}`,
-		{
-			next: {
-				revalidate: 60,
-			},
-		},
+		`${process.env.NEXT_PUBLIC_API_URL}/posts/${postId}`,
+		// {
+		// 	next: {
+		// 		revalidate: 60,
+		// 	},
+		// },
 	)
 
 	const post = await response.json()

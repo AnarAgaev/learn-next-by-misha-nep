@@ -2,23 +2,31 @@
 
 import {Box, Link as ChakraLink, Text, VStack} from '@chakra-ui/react'
 import NextLink from 'next/link'
-import useSWR from 'swr'
-import {getAllPosts} from '@/helpers'
-// import {useEffect} from 'react'
-// import {useShallow} from 'zustand/shallow'
-// import usePosts from '@/store'
+// import useSWR from 'swr'
+// import {getAllPosts} from '@/helpers'
+import {useEffect} from 'react'
+import {useShallow} from 'zustand/shallow'
+import usePosts from '@/store'
 
 export const Posts = () => {
-	const {data: posts, isLoading} = useSWR('posts', getAllPosts)
-	// const [posts, loading, getAllPosts] = usePosts(
-	// 	useShallow((state) => [state.posts, state.loading, state.getAllPosts]),
-	// )
+	// SWR lib
+	// const {data: posts, isLoading} = useSWR('posts', getAllPosts)
 
-	// useEffect(() => {
-	// 	getAllPosts()
-	// }, [getAllPosts])
+	// Zustand
+	const [posts, loading, initialized, getAllPosts] = usePosts(
+		useShallow((state) => [
+			state.posts,
+			state.loading,
+			state.initialized,
+			state.getAllPosts,
+		]),
+	)
 
-	if (isLoading) return <Text>Loading ...</Text>
+	useEffect(() => {
+		getAllPosts()
+	}, [getAllPosts])
+
+	if (loading || !initialized) return <Text>Loading ...</Text>
 
 	return (
 		<>

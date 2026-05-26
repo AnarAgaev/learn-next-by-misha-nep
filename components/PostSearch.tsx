@@ -2,18 +2,35 @@
 
 import {Button, Field, HStack, Input, Stack, Text} from '@chakra-ui/react'
 import {type FormEventHandler, useState} from 'react'
-import useSWRMutation from 'swr/mutation'
-import {getPostsBySearch} from '@/helpers'
+import {useShallow} from 'zustand/shallow'
+// import useSWRMutation from 'swr/mutation'
+// import {getPostsBySearch} from '@/helpers'
+import usePosts from '@/store'
 
 export const PostSearch = () => {
 	const [search, setSearch] = useState<string>('')
 	const [isError, setError] = useState<boolean>(false)
 
-	const {trigger, isMutating} = useSWRMutation(
-		'posts',
-		(_key, {arg}: {arg: string}) => getPostsBySearch(arg),
-		{populateCache: true, revalidate: false},
+	const [getPostsBySearch, loading] = usePosts(
+		useShallow((state) => [state.getPostsBySearch, state.loading]),
 	)
+
+	// const {trigger, isMutating} = useSWRMutation(
+	// 	'posts',
+	// 	(_key, {arg}: {arg: string}) => getPostsBySearch(arg),
+	// 	{populateCache: true, revalidate: false},
+	// )
+
+	// const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+	// 	e.preventDefault()
+
+	// 	if (search === '') {
+	// 		setError(true)
+	// 		return
+	// 	}
+
+	// 	await trigger(search)
+	// }
 
 	const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
 		e.preventDefault()
@@ -23,7 +40,7 @@ export const PostSearch = () => {
 			return
 		}
 
-		await trigger(search)
+		getPostsBySearch({query: search})
 	}
 
 	return (
@@ -50,10 +67,14 @@ export const PostSearch = () => {
 					<Field.ErrorText>Set search query</Field.ErrorText>
 				</Field.Root>
 				<HStack>
-					<Button type="submit" loading={isMutating}>
+					{/* <Button type="submit" loading={isMutating}>
 						Submit
 					</Button>
-					{isMutating && <Text>Loading...</Text>}
+					{isMutating && <Text>Loading...</Text>} */}
+					<Button type="submit" loading={loading}>
+						Submit
+					</Button>
+					{loading && <Text>Loading...</Text>}
 				</HStack>
 			</Stack>
 		</form>

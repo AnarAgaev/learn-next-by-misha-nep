@@ -2,7 +2,7 @@ import type {Metadata} from 'next'
 import {Montserrat} from 'next/font/google'
 import './globals.scss'
 import {Container} from '@chakra-ui/react'
-import {Footer, Header} from '@/components'
+import {Footer, Header, Providers} from '@/components'
 import type {NavLinks} from '@/components/Header'
 import {Provider} from '@/components/ui/provider'
 
@@ -24,34 +24,18 @@ export default function RootLayout({
 	return (
 		<html lang="en" className={montserrat.className} suppressHydrationWarning>
 			<body>
-				<Provider>
-					<Header navLinks={navLinks} />
-					<main>
-						<Container my="6" flex="1" display="flex" flexDirection="column">
-							{children}
-						</Container>
-					</main>
-					<Footer />
-				</Provider>
+				<Providers>
+					<Provider>
+						<Header />
+						<main>
+							<Container my="6" flex="1" display="flex" flexDirection="column">
+								{children}
+							</Container>
+						</main>
+						<Footer />
+					</Provider>
+				</Providers>
 			</body>
 		</html>
 	)
 }
-
-const navLinks: NavLinks = [
-	{
-		id: 1,
-		url: '/',
-		label: 'Home',
-	},
-	{
-		id: 2,
-		url: '/about',
-		label: 'About',
-	},
-	{
-		id: 3,
-		url: '/blog',
-		label: 'Blog',
-	},
-]
